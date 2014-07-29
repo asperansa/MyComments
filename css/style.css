@@ -1,0 +1,48 @@
+body {
+  padding: 0px;
+}
+.title {
+  padding: 0 20px;
+}
+.published,
+time {
+  color: #7e7e7e;
+}
+.content,
+.published,
+.comment-item {
+  padding-left: 20px;
+}
+.avatar img,
+.username,
+time {
+  display: block;
+  float: left;
+}
+.avatar img {
+  width: 138px;
+  height: 137px;
+}
+.username,
+.answer {
+  font-size: 20px;
+  margin: 0 10px;
+}
+time {
+  margin-top: 3px;
+  margin-right: 10px;
+}
+.answer {
+  float: right;
+}
+.message {
+  clear: right;
+  float: left;
+  padding: 10px;
+}
+.clear {
+  clear: both;
+}
+.comment-item {
+  padding-top: 10px;
+}
