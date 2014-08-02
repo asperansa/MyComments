@@ -1,6 +1,7 @@
 //@title-font: Georgia;
 @padding-left: 20px;
 @subtext-color: #7e7e7e;
+@button-color: #eee;
 
 body {
   padding: 0px;
@@ -23,7 +24,8 @@ time {
 
 .avatar img,
 .username,
-time {
+time,
+.button {
   display: block;
   float: left;
 }
@@ -31,12 +33,13 @@ time {
 .avatar img {
   width: 138px;
   height: 137px;
+  padding-right: 20px;
 }
 
 .username,
 .answer {
   font-size: 20px;
-  margin: 0 10px;
+  margin-right: 10px;
 }
 
 time {
@@ -45,12 +48,11 @@ time {
 }
 
 .answer {
-  float: right;;
+  float: right;
 }
 
 .message {
   clear: right;
-  float: left;
   padding: 10px;
 }
 
@@ -60,4 +62,73 @@ time {
 
 .comment-item {
   padding-top: 10px;
+}
+.comment-item
+.comment-item {
+  padding-left: 156px;
+}
+
+.button {
+  background-color: @button-color;
+  padding: 5px 15px;
+  border: 1px solid #aeaeae;
+  margin-top: -1px;
+}
+
+span.button {
+  border-right-width: 0px;
+  border-left-width: 0px;
+}
+
+.plus {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.minus {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+a.button {
+  text-decoration: none;
+  color: #000;
+
+}
+
+.comments-form {
+  border: 1px solid #aeaeae;
+  margin: 20px;
+  padding: 20px;
+  padding-bottom: 40px;
+}
+
+.form-title {
+  margin-top: -31px;
+  background: #fff;
+  width: 176px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.comments-form label {
+  width: 200px;
+  position: relative;
+  display: block;
+  float: left;
+}
+
+.comments-form input {
+  width: 200px;
+}
+
+.comments-form textarea {
+  width: 400px;
+}
+
+.button_blue {
+  background: #1278a2;
+  color: #fff;
+  margin-left: 200px;
+  cursor: pointer;
 }

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <h1 class="title">
@@ -29,14 +29,50 @@
             Carabutur tristique
         </a>
         <time>Час назад</time>
-        <a href="#" class="plus">+</a>
-        <span class="score">0</span>
-        <a href="#" class="minus">-</a>
+        <a href="#" class="button plus">+</a>
+        <span class="button score">0</span>
+        <a href="#" class="button minus">-</a>
 
         <div class="message">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
         <div class="clear"></div>
+        <div class="comment-item">
+            <a href="#" class="answer">Ответить</a>
+            <div class="avatar">
+                <img src="img/sprite.png" alt="" />
+            </div>
+            <a href="#" class="username">
+                Carabutur tristique
+            </a>
+            <time>15 минут назад</time>
+            <a href="#" class="button plus">+</a>
+            <span class="button score">0</span>
+            <a href="#" class="button minus">-</a>
+
+            <div class="message">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+            <div class="clear"></div>
+            <div class="comment-item">
+                <a href="#" class="answer">Ответить</a>
+                <div class="avatar">
+                    <img src="img/sprite.png" alt="" />
+                </div>
+                <a href="#" class="username">
+                    Carabutur tristique
+                </a>
+                <time>15 минут назад</time>
+                <a href="#" class="button plus">+</a>
+                <span class="button score">0</span>
+                <a href="#" class="button minus">-</a>
+
+                <div class="message">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
     </div>
     <div class="comment-item">
         <a href="#" class="answer">Ответить</a>
@@ -46,15 +82,27 @@
         <a href="#" class="username">
             Carabutur tristique
         </a>
-        <time>Час назад</time>
-        <a href="#" class="plus">+</a>
-        <span class="score">0</span>
-        <a href="#" class="minus">-</a>
+        <time>15 минут назад</time>
+        <a href="#" class="button plus">+</a>
+        <span class="button score">0</span>
+        <a href="#" class="button minus">-</a>
 
         <div class="message">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br/>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br/>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br/>
         </div>
         <div class="clear"></div>
+    </div>
+    <div class="comments-form">
+        <div class="form-title">Добавить комментарий</div>
+        <label for="name">Имя:</label>
+        <input id="name" type="text"/><br/>
+        <label for="e-mail">E-mail:</label>
+        <input id="e-mail" type="text" /><br/>
+        <label for="text-comment">Текст комментария:</label>
+        <textarea id="text-comment" rows="5"></textarea><br/>
+        <div class="button button_blue">Добавить комментарий</div>
     </div>
 </body>
 </html>
