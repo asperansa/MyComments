@@ -18,6 +18,7 @@ $(function () {
         model: Comment
     });
 
+
     var CommentView = Backbone.View.extend({
         tagName: 'div',
         className: 'comment-item',
@@ -32,7 +33,8 @@ $(function () {
             "click .plus": "addScore",
             "click .minus": "decScore",
             "click .open-comment": "render",
-            "click .answer": "answer"
+            "click .answer": "answer",
+            "click .button_blue": "save"
         },
 
         addScore: function () {
@@ -56,7 +58,28 @@ $(function () {
 
         answer: function () {
             var addTemplate = this.templates["add"];
-            $(this.el).after(addTemplate(this.model.toJSON()));
+            $(this.el).append(addTemplate(this.model.toJSON()));
+        },
+
+        save: function () {
+            var comment = new Comment();
+            comment.set({
+                id: this.model.attributes.id+100,
+                parent: this.model.attributes.id,
+                name: $(this.el).find("input#name").val(),
+                text: $(this.el).find("textarea").val(),
+                score: 0,
+                time: '02.08.2014 22:54'
+            });
+            var commentView = new CommentView({
+                model: comment
+            });
+            if (comment.attributes.parent != undefined) {
+                this.$('#comment_'+comment.attributes.parent).after(commentView.render().el);
+            }
+            else {
+                this.el.append(commentView.render().el);
+            }
         },
 
         render: function () {
@@ -97,4 +120,5 @@ $(function () {
     });
 
     var commentsView = new CommentsView();
+
 });
