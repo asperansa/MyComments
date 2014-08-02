@@ -23,6 +23,12 @@ $(function () {
         model: Comment
     });
 
+    function markdown (text) {
+        var parser = new Markdown.Parser();
+        var html = parser.makeHtml(text);
+
+        return html;
+    }
 
     var CommentView = Backbone.View.extend({
         tagName: 'div',
@@ -72,12 +78,14 @@ $(function () {
         save: function () {
             if ($(this.el).find('.error').length <= 0 & $(this.el).find('.required').length <= 0)
             {
+
+
                 var comment = new Comment();
                 comment.set({
                     id: this.model.attributes.id+100,
                     parent: this.model.attributes.id,
                     name: $(this.el).find("input#name").val(),
-                    text: $(this.el).find("textarea").val(),
+                    text: markdown($(this.el).find("textarea").val()),
                     score: 0,
                     time: '02.08.2014 22:54'
                 });
@@ -121,7 +129,10 @@ $(function () {
             $(this.el).html(commentTemplate(this.model.toJSON()));
             return this;
         }
+
     });
+
+
 
     var CommentsView = Backbone.View.extend({
         el: $("#comments"),
