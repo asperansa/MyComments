@@ -23,6 +23,21 @@ $(function () {
         className: 'comment-item',
         template: $("#comment-template").html(),
 
+        events: {
+            "click .plus": "addScore",
+            "click .minus": "decScore"
+        },
+
+        addScore: function () {
+            this.model.attributes.score+=1;
+            this.$("#voting_"+this.model.attributes.id).html(this.model.attributes.score);
+        },
+
+        decScore: function () {
+            this.model.attributes.score-=1;
+            this.$("#voting_"+this.model.attributes.id).html(this.model.attributes.score);
+        },
+
         render: function () {
             var commentTemplate = _.template(this.template);
 
