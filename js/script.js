@@ -1,21 +1,19 @@
 $(function () {
 
     var comments = [
-        { id: "234", name: "Carabutur tristique", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", score: 0, time: "23.06.2014 00:13"},
-        { id: "2", parent: "234", name: "Carabutur tristique", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", score: 4, time: "23.06.2014 00:13"},
-        { id: "1", name: "Carabutur tristique", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", score: -5, time: "23.06.2014 00:13"},
-        { id: "45", parent: "2", name: "Carabutur tristique", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", score: 0, time: "23.06.2014 00:13"}
+        { id: "234", name: "Carabutur tristique", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", score: 0, time: "1407010357627"},
+        { id: "2", parent: "234", name: "Carabutur tristique", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", score: 4, time: "1407010357627"},
+        { id: "1", name: "Carabutur tristique", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", score: -5, time: "1407010357627"},
+        { id: "45", parent: "2", name: "Carabutur tristique", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", score: 0, time: "1407010357627"}
 
     ];
 
     var Comment = Backbone.Model.extend({
         defaults: {
-            avatar: "img/sprite.png"
-        }/*,
-
-        validate: function(attrs) {
-            if (attrs.name)
-        }*/
+            avatar: "img/sprite.png",
+            score: 0,
+            time: new Date().getTime()
+        }
 
     });
 
@@ -29,6 +27,22 @@ $(function () {
 
         return html;
     }
+
+    function timeToLate (time) {
+        var now = new Date();
+        // days
+        var daystoCD = Math.floor((now.getTime() - time) / (1000*60*60*24));
+        if (daystoCD > 0)
+            return daystoCD+" дн. назад";
+        // hours
+        var hourstoCD = Math.floor((now.getTime() - time) / (1000*60*60));
+        if (hourstoCD > 0)
+            return hourstoCD+" час. назад";
+        // minutes
+        var minutestoCD = Math.floor((now.getTime() - time) / (1000*60));
+        if (minutestoCD > 0)
+            return minutestoCD+" мин. назад";
+    };
 
     var CommentView = Backbone.View.extend({
         tagName: 'div',
@@ -86,8 +100,7 @@ $(function () {
                     parent: this.model.attributes.id,
                     name: $(this.el).find("input#name").val(),
                     text: markdown($(this.el).find("textarea").val()),
-                    score: 0,
-                    time: '02.08.2014 22:54'
+                    time: (new Date().getTime())
                 });
             }
             else
@@ -150,6 +163,7 @@ $(function () {
         },
 
         renderComment: function (item) {
+            item.attributes.time = timeToLate(item.attributes.time);
             var commentView = new CommentView({
                 model: item
             });
