@@ -110,3 +110,10 @@ a.button {
   margin-left: 200px;
   cursor: pointer;
 }
+.error,
+.invalid.required {
+  border: 1px solid red;
+}
+.error-message {
+  color: red;
+}

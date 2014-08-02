@@ -11,7 +11,12 @@ $(function () {
     var Comment = Backbone.Model.extend({
         defaults: {
             avatar: "img/sprite.png"
-        }
+        }/*,
+
+        validate: function(attrs) {
+            if (attrs.name)
+        }*/
+
     });
 
     var Comments = Backbone.Collection.extend({
@@ -65,15 +70,28 @@ $(function () {
         },
 
         save: function () {
-            var comment = new Comment();
-            comment.set({
-                id: this.model.attributes.id+100,
-                parent: this.model.attributes.id,
-                name: $(this.el).find("input#name").val(),
-                text: $(this.el).find("textarea").val(),
-                score: 0,
-                time: '02.08.2014 22:54'
-            });
+            if ($(this.el).find('.error').length <= 0 & $(this.el).find('.required').length <= 0)
+            {
+                var comment = new Comment();
+                comment.set({
+                    id: this.model.attributes.id+100,
+                    parent: this.model.attributes.id,
+                    name: $(this.el).find("input#name").val(),
+                    text: $(this.el).find("textarea").val(),
+                    score: 0,
+                    time: '02.08.2014 22:54'
+                });
+            }
+            else
+            {
+                $('.comments-form').addClass('invalid');
+                $(this.el).find('.error-message').html('Не все поля заполнены<br/>');
+                if ($(this.el).find("input#name").hasClass('error'))
+                    $(this.el).find('.error-message').append('Неверное имя<br/>');
+                if ($(this.el).find("input#e-mail").hasClass('error'))
+                    $(this.el).find('.error-message').append('Неверный E-mail<br/>');
+                return;
+            }
             var commentView = new CommentView({
                 model: comment
             });
@@ -83,6 +101,7 @@ $(function () {
             else {
                 this.el.append(commentView.render().el);
             }
+            $(this.el).find('.comments-form').hide();
         },
 
         hide: function () {

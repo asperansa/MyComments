@@ -6,6 +6,7 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/underscore.js"></script>
     <script type="text/javascript" src="js/backbone.js"></script>
+    <script type="text/javascript" src="js/milk.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
@@ -51,16 +52,20 @@
         <div class="show-comment">Развернуть комментарии</div>
     </script>
     <script id="add-template" type="text/template">
-        <div class="comments-form">
+        <form id="add-comment" class="comments-form">
             <div class="form-title">Добавить комментарий</div>
+            <div class="error-message"></div>
             <label for="name">Имя:</label>
-            <input id="name" type="text"/><br/>
+            <input id="name" type="text" pattern="\w{4,}" required class="required" /><br/>
             <label for="e-mail">E-mail:</label>
-            <input id="e-mail" type="text" /><br/>
+            <input id="e-mail" type="email" required  class="required" /><br/>
             <label for="text-comment">Текст комментария:</label>
-            <textarea id="text-comment" rows="5"></textarea><br/>
+            <textarea id="text-comment" rows="5" required class="required"></textarea><br/>
             <div class="button button_blue">Добавить комментарий</div>
-        </div>
+        </form>
+        <script>
+            H5F.setup(document.getElementById("add-comment"));
+        </script>
     </script>
 </body>
 </html>
