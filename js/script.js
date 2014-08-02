@@ -24,13 +24,15 @@ $(function () {
 
         templates: {
             "comment": _.template($("#comment-template").html()),
-            "hide": _.template($("#hide-template").html())
+            "hide": _.template($("#hide-template").html()),
+            "add": _.template($("#add-template").html())
         },
 
         events: {
             "click .plus": "addScore",
             "click .minus": "decScore",
-            "click .open-comment": "render"
+            "click .open-comment": "render",
+            "click .answer": "answer"
         },
 
         addScore: function () {
@@ -50,6 +52,11 @@ $(function () {
                 var hideTemplate = this.templates["hide"];
                 $(this.el).html(hideTemplate(this.model.toJSON()));
             }
+        },
+
+        answer: function () {
+            var addTemplate = this.templates["add"];
+            $(this.el).after(addTemplate(this.model.toJSON()));
         },
 
         render: function () {
@@ -80,7 +87,7 @@ $(function () {
                 model: item
             });
             if (item.attributes.parent != undefined) {
-                this.$('#comment_'+item.attributes.parent).append(commentView.render().el);
+                this.$('#comment_'+item.attributes.parent).after(commentView.render().el);
             }
             else {
                 this.el.append(commentView.render().el);
