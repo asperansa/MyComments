@@ -21,25 +21,39 @@ $(function () {
     var CommentView = Backbone.View.extend({
         tagName: 'div',
         className: 'comment-item',
-        template: $("#comment-template").html(),
+
+        templates: {
+            "comment": _.template($("#comment-template").html()),
+            "hide": _.template($("#hide-template").html())
+        },
 
         events: {
             "click .plus": "addScore",
-            "click .minus": "decScore"
+            "click .minus": "decScore",
+            "click .open-comment": "render"
         },
 
         addScore: function () {
             this.model.attributes.score+=1;
             this.$("#voting_"+this.model.attributes.id).html(this.model.attributes.score);
+            this.checkVoting();
         },
 
         decScore: function () {
             this.model.attributes.score-=1;
             this.$("#voting_"+this.model.attributes.id).html(this.model.attributes.score);
+            this.checkVoting();
+        },
+
+        checkVoting: function () {
+            if (this.model.attributes.score < -10) {
+                var hideTemplate = this.templates["hide"];
+                $(this.el).html(hideTemplate(this.model.toJSON()));
+            }
         },
 
         render: function () {
-            var commentTemplate = _.template(this.template);
+            var commentTemplate = this.templates["comment"];
 
             $(this.el).html(commentTemplate(this.model.toJSON()));
             return this;
