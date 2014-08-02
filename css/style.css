@@ -27,7 +27,8 @@ time,
 }
 .username,
 .answer,
-.open-comment {
+.open-comment,
+.hide-comment {
   font-size: 20px;
   margin-right: 10px;
 }
@@ -65,7 +66,8 @@ span.button {
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
 }
-.open-comment {
+.open-comment,
+.hide-comment {
   text-decoration: underline;
   cursor: pointer;
 }

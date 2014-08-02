@@ -28,6 +28,7 @@
     <script id="comment-template" type="text/template">
         <div id="comment_<%= id %>">
             <a class="answer">Ответить</a>
+
             <div class="avatar">
                 <img src="<%= avatar %>" alt="<%= name %>" />
             </div>
@@ -40,10 +41,14 @@
                 <%= text %>
             </div>
             <div class="clear"></div>
+            <a class="hide-comment">Свернуть комментарии</a>
         </div>
     </script>
     <script id="hide-template" type="text/template">
         <div class="open-comment">Открыть комментарий</div>
+    </script>
+    <script id="show-template" type="text/template">
+        <div class="show-comment">Развернуть комментарии</div>
     </script>
     <script id="add-template" type="text/template">
         <div class="comments-form">

@@ -26,7 +26,8 @@ $(function () {
         templates: {
             "comment": _.template($("#comment-template").html()),
             "hide": _.template($("#hide-template").html()),
-            "add": _.template($("#add-template").html())
+            "add": _.template($("#add-template").html()),
+            "show": _.template($("#show-template").html())
         },
 
         events: {
@@ -34,7 +35,9 @@ $(function () {
             "click .minus": "decScore",
             "click .open-comment": "render",
             "click .answer": "answer",
-            "click .button_blue": "save"
+            "click .button_blue": "save",
+            "click .hide-comment": "hide",
+            "click .show-comment": "show"
         },
 
         addScore: function () {
@@ -80,6 +83,17 @@ $(function () {
             else {
                 this.el.append(commentView.render().el);
             }
+        },
+
+        hide: function () {
+            var hideTemplate = this.templates["show"];
+            $(this.el).append(hideTemplate(this.model.toJSON()));
+            this.$('#comment_'+this.model.attributes.id).hide();
+        },
+
+        show: function () {
+            commentsView.renderComment(this.model);
+            $('.show-comment').hide();
         },
 
         render: function () {
