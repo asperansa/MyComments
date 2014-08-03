@@ -38,7 +38,7 @@ $(function () {
     })();
 
     $(function () {
-        var comments, Comment, Comments, CommentView, commentsView, CommentsView;
+        var comments;
         /**
          * Первоначальный набор demo комментариев
          * @type {*[]}
@@ -91,37 +91,42 @@ $(function () {
          *      задаем defaults: рейтинг и время по-умолчанию
          * @type {*|void}
          */
+        var Comment;
         Comment = Backbone.Model.extend({
             defaults: {
                 score: 0,
                 time: new Date().getTime() // timestamp
             }
         }); // Model Comment...
+        
     
         /**
          * Определении коллекциии коментариев
          *      задаем model: модель комментариев
          * @type {*|void}
          */
+        var Comments;
         Comments = Backbone.Collection.extend({
             model: Comment
         }); // Collection Comments...
+        
     
         /**
          * Определяем представление для комментария
          * @type {*|void}
          */
+        var CommentView;
         CommentView = Backbone.View.extend({
             tagName: 'div',
             className: 'comment-item',
-    
+        
             templates: {
                 'comment': _.template($('#comment-template').html()), // основной шаблон комментария
                 'hide': _.template($('#hide-template').html()), // Открыть комментарий
                 'add': _.template($('#add-template').html()), // Добавить комментарий
                 'show': _.template($('#show-template').html()) // Развернуть комментарий
             }, // templates..
-    
+        
             events: {
                 'click .plus': 'addScore',
                 'click .minus': 'decScore',
@@ -131,7 +136,7 @@ $(function () {
                 'click .hide-comment': 'hide',
                 'click .show-comment': 'show'
             }, // events..
-    
+        
             /**
              * Увеличивает рейтинг комментария на +1
              */
@@ -141,18 +146,18 @@ $(function () {
                 ).html(this.model.attributes.score += 1);
                 this.checkVoting();
             }, // addScore..
-    
+        
             /**
              * Уменьшает рейтинг комментария на -1
              */
             decScore: function () {
                 this.$(
                     '#voting_' +
-                    this.model.attributes.id
+                        this.model.attributes.id
                 ).html(this.model.attributes.score -= 1);
                 this.checkVoting();
             }, // decScore..
-    
+        
             /**
              * Проверка на скрытие комментария
              */
@@ -165,7 +170,7 @@ $(function () {
                     );
                 } // если рейтинг < -10..
             }, // checkVoting..
-    
+        
             /**
              * Ответить на комментарий
              */
@@ -177,7 +182,7 @@ $(function () {
                 );
                 H5F.setup(document.getElementById('add-comment'));
             }, // answer..
-    
+        
             /**
              * Сохранить комментарий
              */
@@ -197,7 +202,7 @@ $(function () {
                     $('.comments-form').addClass('invalid');
                     $(this.el).find('.error-message').html('Не все поля заполнены<br/>');
                     if ($(this.el).find('input#name').hasClass('error')) {
-                       $(this.el).find('.error-message').append('Неверное имя<br/>');
+                        $(this.el).find('.error-message').append('Неверное имя<br/>');
                     }
                     if ($(this.el).find('input#e-mail').hasClass('error')) {
                         $(this.el).find('.error-message').append('Неверный E-mail<br/>');
@@ -210,14 +215,14 @@ $(function () {
                 if (comment.attributes.parent !== undefined) {
                     this.$(
                         '#comment_' +
-                        comment.attributes.parent
+                            comment.attributes.parent
                     ).after(commentView.render().el);
                 } else {
                     this.el.append(commentView.render().el);
                 }
                 $(this.el).find('.comments-form').hide();
             }, // save..
-    
+        
             /**
              * Скрыть комментарий
              */
@@ -225,10 +230,10 @@ $(function () {
                 $(this.el).append(this.templates.show(this.model.toJSON()));
                 this.$(
                     '#comment_' +
-                    this.model.attributes.id
+                        this.model.attributes.id
                 ).hide();
             },// hide..
-    
+        
             /**
              * Показать комментарий
              */
@@ -236,33 +241,34 @@ $(function () {
                 commentsView.renderComment(this.model);
                 $('.show-comment').hide();
             }, // show..
-    
+        
             render: function () {
                 $(this.el).html(this.templates.comment(this.model.toJSON()));
                 return this;
             } // render..
-    
+        
         }); // Vew CommentView...
     
         /**
          * Определяем представление для коллекции комментарией
          * @type {*|void}
          */
+        var CommentsView, commentsView;
         CommentsView = Backbone.View.extend({
             el: $('#comments'),
-    
+        
             initialize: function () {
                 this.collection = new Comments(comments);
                 this.render();
             }, // initialize..
-    
+        
             render: function () {
                 var that = this;
                 _.each(this.collection.models, function (item) {
                     that.renderComment(item);
                 }, this);
             }, // render..
-    
+        
             renderComment: function (item) {
                 if (item.attributes.time > 0) {
                     item.attributes.time = timeToLate(item.attributes.time);
@@ -279,9 +285,9 @@ $(function () {
                     this.el.append(commentView.render().el);
                 }
             } // renderComment..
-    
+        
         }); // View CommentsView..
-    
+        
         commentsView = new CommentsView();
     
         /**
@@ -293,6 +299,7 @@ $(function () {
             var parser = new Markdown.Parser();
             return parser.makeHtml(text);
         } // markdown..
+        
     
         /**
          * Отсчет сколько прошло времени
@@ -325,6 +332,8 @@ $(function () {
             }
             return '';
         } // timeToLate..
+        
+    
     });
 
     return cs;
