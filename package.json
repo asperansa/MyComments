@@ -2,7 +2,7 @@
   "name": "my-comments",
   "version": "0.0.1",
   "description": "Comments System",
-  "main": "js/script.js",
+  "main": "js/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/asperansa/MyComments"
