@@ -2,14 +2,13 @@ $(function () {
 
     /**
      * Первоначальный набор demo комментариев
-     * @type {*[
-     *      id (number) - идентификатор комментария
-      *     parent (number) - идентификатор родителя (максимальный уровень вложенности = 3)
-      *     name (string) - автор комментария
-      *     text (string) - текст комментария (поддержка markdown)
-      *     score (number) - рейтинг комментария
-      *     time (timestamp) -время добавления комментария
-     * ]}
+     * @type {*[]}
+     *     id (number) - идентификатор комментария
+     *     parent (number) - идентификатор родителя (максимальный уровень вложенности = 3)
+     *     name (string) - автор комментария
+     *     text (string) - текст комментария (поддержка markdown)
+     *     score (number) - рейтинг комментария
+     *     time (timestamp) -время добавления комментария
      */
     var comments = [
         {
@@ -46,12 +45,11 @@ $(function () {
 
     /**
      * Определение модели комментария
-     *      задаем defaults: аватар, рейтинг и время по-умолчанию
+     *      задаем defaults: рейтинг и время по-умолчанию
      * @type {*|void}
      */
     var Comment = Backbone.Model.extend({
         defaults: {
-            avatar: "img/sprite.png",
             score: 0,
             time: new Date().getTime() // timestamp
         }
@@ -129,13 +127,14 @@ $(function () {
                     this.model.toJSON()
                 )
             );
+            H5F.setup(document.getElementById("add-comment"));
         }, // answer..
 
         /**
          * Сохранить комментарий
          */
         save: function () {
-            if ($(this.el).find('.error').length <= 0 & $(this.el).find('.required').length <= 0) { // if данные валидны
+            if ($(this.el).find('.error').length <= 0 && $(this.el).find('.required').length <= 0) { // if данные валидны
                 var comment = new Comment();
                 comment.set({
                     id: this.model.attributes.id+100,
@@ -255,6 +254,7 @@ $(function () {
         var minutestoCD = Math.floor((now.getTime() - time) / (1000*60));
         if (minutestoCD > 0)
             return minutestoCD+" мин. назад";
-    }; // timeToLate..
+        return "";
+    } // timeToLate..
 
 });
