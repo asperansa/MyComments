@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <h1 class="title">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </h1>
+    <div class="published">
+        01/01/2014
+    </div>
+    <div class="content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <h2 class="title">
+        Комментарии:
+    </h2>
+    <section id="comments"></section>
+    <script id="comment-template" type="text/template">
+        <div id="comment_<%= id %>">
+            <a class="answer">Ответить</a>
+
+            <div class="avatar">
+                <img src="img/sprite.png" alt="<%= name %>" />
+            </div>
+            <a href="#" class="username"><%= name %></a>
+            <time><%= time %></time>
+            <a class="button plus">+</a>
+            <span id="voting_<%= id %>" class="button score"><%= score %></span>
+            <a class="button minus">-</a>
+            <div class="message">
+                <%= text %>
+            </div>
+            <div class="clear"></div>
+            <a class="hide-comment">Свернуть комментарии</a>
+        </div>
+    </script>
+    <script id="hide-template" type="text/template">
+        <div class="open-comment">Открыть комментарий</div>
+    </script>
+    <script id="show-template" type="text/template">
+        <div class="show-comment">Развернуть комментарии</div>
+    </script>
+    <script id="add-template" type="text/template">
+        <form id="add-comment" class="comments-form">
+            <div class="form-title">Добавить комментарий</div>
+            <div class="error-message"></div>
+            <label for="name">Имя:</label>
+            <input id="name" type="text" pattern="\w{4,}" required class="required" /><br/>
+            <label for="e-mail">E-mail:</label>
+            <input id="e-mail" type="email" required  class="required" /><br/>
+            <label for="text-comment">Текст комментария:</label>
+            <textarea id="text-comment" rows="5" required class="required"></textarea><br/>
+            <div class="button button_blue">Добавить комментарий</div>
+        </form>
+    </script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/underscore.js"></script>
+    <script type="text/javascript" src="js/backbone.js"></script>
+    <script type="text/javascript" src="js/milk.min.js"></script>
+    <script type="text/javascript" src="js/markparser.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
