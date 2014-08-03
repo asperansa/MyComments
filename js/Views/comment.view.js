@@ -109,7 +109,7 @@ CommentView = Backbone.View.extend({
         } else {
             this.el.append(commentView.render().el);
         }
-        $(this.el).find('.comments-form').hide();
+        $(this.el).find('.comments-form').remove();
     }, // save..
 
     /**

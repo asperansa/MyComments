@@ -142,7 +142,6 @@ $(function () {
          * Ответить на комментарий
          */
         answer: function () {
-            $(this.el).find('.comments-form').hide();
             if ($(this.el).find('.comments-form').length <= 0) {
                 $(this.el).append(
                     this.templates.add(
@@ -190,7 +189,7 @@ $(function () {
             } else {
                 this.el.append(commentView.render().el);
             }
-            $(this.el).find('.comments-form').hide();
+            $(this.el).find('.comments-form').remove();
         }, // save..
     
         /**
