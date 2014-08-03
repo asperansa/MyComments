@@ -1,5 +1,5 @@
 $(function () {
-
+    var comments, Comment, Comments, CommentView, commentsView, CommentsView;
     /**
      * Первоначальный набор demo комментариев
      * @type {*[]}
@@ -10,36 +10,40 @@ $(function () {
      *     score (number) - рейтинг комментария
      *     time (timestamp) -время добавления комментария
      */
-    var comments = [
+    comments = [
         {
-            id: "234",
-            name: "Carabutur tristique",
-            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: '234',
+            name: 'Carabutur tristique',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ' +
+                    'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             score: 3,
-            time: "1407010357627"
+            time: '1407010357627'
         },
         {
-            id: "2",
-            parent: "234",
-            name: "Carabutur tristique",
-            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: '2',
+            parent: '234',
+            name: 'Carabutur tristique',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ' +
+                    'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             score: 0,
-            time: "1407010357627"
+            time: '1407010357627'
         },
         {
-            id: "1",
-            name: "Carabutur tristique",
-            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: '1',
+            name: 'Carabutur tristique',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ' +
+                    'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             score: -5,
-            time: "1407010357627"
+            time: '1407010357627'
         },
         {
-            id: "45",
-            parent: "2",
-            name: "Carabutur tristique",
-            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: '45',
+            parent: '2',
+            name: 'Carabutur tristique',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ' +
+                    'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             score: 0,
-            time: "1407010357627"
+            time: '1407010357627'
         }
     ]; // var comments...
 
@@ -48,7 +52,7 @@ $(function () {
      *      задаем defaults: рейтинг и время по-умолчанию
      * @type {*|void}
      */
-    var Comment = Backbone.Model.extend({
+    Comment = Backbone.Model.extend({
         defaults: {
             score: 0,
             time: new Date().getTime() // timestamp
@@ -60,7 +64,7 @@ $(function () {
      *      задаем model: модель комментариев
      * @type {*|void}
      */
-    var Comments = Backbone.Collection.extend({
+    Comments = Backbone.Collection.extend({
         model: Comment
     }); // Collection Comments...
 
@@ -68,32 +72,34 @@ $(function () {
      * Определяем представление для комментария
      * @type {*|void}
      */
-    var CommentView = Backbone.View.extend({
+    CommentView = Backbone.View.extend({
         tagName: 'div',
         className: 'comment-item',
 
         templates: {
-            "comment":  _.template($("#comment-template").html()), // основной шаблон комментария
-            "hide":     _.template($("#hide-template").html()), // Открыть комментарий
-            "add":      _.template($("#add-template").html()), // Добавить комментарий
-            "show":     _.template($("#show-template").html()) // Развернуть комментарий
+            'comment': _.template($('#comment-template').html()), // основной шаблон комментария
+            'hide': _.template($('#hide-template').html()), // Открыть комментарий
+            'add': _.template($('#add-template').html()), // Добавить комментарий
+            'show': _.template($('#show-template').html()) // Развернуть комментарий
         }, // templates..
 
         events: {
-            "click .plus":          "addScore",
-            "click .minus":         "decScore",
-            "click .open-comment":  "render",
-            "click .answer":        "answer",
-            "click .button_blue":   "save",
-            "click .hide-comment":  "hide",
-            "click .show-comment":  "show"
+            'click .plus': 'addScore',
+            'click .minus': 'decScore',
+            'click .open-comment': 'render',
+            'click .answer': 'answer',
+            'click .button_blue': 'save',
+            'click .hide-comment': 'hide',
+            'click .show-comment': 'show'
         }, // events..
 
         /**
          * Увеличивает рейтинг комментария на +1
          */
         addScore: function () {
-            this.$("#voting_"+this.model.attributes.id).html(this.model.attributes.score+=1);
+            this.$(
+                '#voting_' + this.model.attributes.id
+            ).html(this.model.attributes.score += 1);
             this.checkVoting();
         }, // addScore..
 
@@ -101,7 +107,10 @@ $(function () {
          * Уменьшает рейтинг комментария на -1
          */
         decScore: function () {
-            this.$("#voting_"+this.model.attributes.id).html(this.model.attributes.score-=1);
+            this.$(
+                '#voting_' +
+                this.model.attributes.id
+            ).html(this.model.attributes.score -= 1);
             this.checkVoting();
         }, // decScore..
 
@@ -111,7 +120,7 @@ $(function () {
         checkVoting: function () {
             if (this.model.attributes.score < -10) {
                 $(this.el).html(
-                    this.templates["hide"](
+                    this.templates.hide(
                         this.model.toJSON()
                     )
                 );
@@ -123,43 +132,48 @@ $(function () {
          */
         answer: function () {
             $(this.el).append(
-                this.templates["add"](
+                this.templates.add(
                     this.model.toJSON()
                 )
             );
-            H5F.setup(document.getElementById("add-comment"));
+            H5F.setup(document.getElementById('add-comment'));
         }, // answer..
 
         /**
          * Сохранить комментарий
          */
         save: function () {
-            if ($(this.el).find('.error').length <= 0 && $(this.el).find('.required').length <= 0) { // if данные валидны
-                var comment = new Comment();
+            var comment = new Comment();
+            if ($(this.el).find('.error').length <= 0 &&
+                $(this.el).find('.required').length <= 0) { // if данные валидны
                 comment.set({
-                    id: this.model.attributes.id+100,
+                    id: this.model.attributes.id +
+                        100,
                     parent: this.model.attributes.id,
-                    name: $(this.el).find("input#name").val(),
-                    text: markdown($(this.el).find("textarea").val()),
+                    name: $(this.el).find('input#name').val(),
+                    text: markdown($(this.el).find('textarea').val()),
                     time: new Date().getTime()
                 });
-            }
-            else { // сообщения об ошибках
+            } else { // сообщения об ошибках
                 $('.comments-form').addClass('invalid');
                 $(this.el).find('.error-message').html('Не все поля заполнены<br/>');
-                if ($(this.el).find("input#name").hasClass('error'))
-                    $(this.el).find('.error-message').append('Неверное имя<br/>');
-                if ($(this.el).find("input#e-mail").hasClass('error'))
+                if ($(this.el).find('input#name').hasClass('error')) {
+                   $(this.el).find('.error-message').append('Неверное имя<br/>');
+                }
+                if ($(this.el).find('input#e-mail').hasClass('error')) {
                     $(this.el).find('.error-message').append('Неверный E-mail<br/>');
+                }
                 return;
             }
             var commentView = new CommentView({
                 model: comment
             });
-            if (comment.attributes.parent != undefined) {
-                this.$('#comment_'+comment.attributes.parent).after(commentView.render().el);
-            }
-            else {
+            if (comment.attributes.parent !== undefined) {
+                this.$(
+                    '#comment_' +
+                    comment.attributes.parent
+                ).after(commentView.render().el);
+            } else {
                 this.el.append(commentView.render().el);
             }
             $(this.el).find('.comments-form').hide();
@@ -169,8 +183,11 @@ $(function () {
          * Скрыть комментарий
          */
         hide: function () {
-            $(this.el).append(this.templates["show"](this.model.toJSON()));
-            this.$('#comment_'+this.model.attributes.id).hide();
+            $(this.el).append(this.templates.show(this.model.toJSON()));
+            this.$(
+                '#comment_' +
+                this.model.attributes.id
+            ).hide();
         },// hide..
 
         /**
@@ -182,7 +199,7 @@ $(function () {
         }, // show..
 
         render: function () {
-            $(this.el).html(this.templates["comment"](this.model.toJSON()));
+            $(this.el).html(this.templates.comment(this.model.toJSON()));
             return this;
         } // render..
 
@@ -192,8 +209,8 @@ $(function () {
      * Определяем представление для коллекции комментарией
      * @type {*|void}
      */
-    var CommentsView = Backbone.View.extend({
-        el: $("#comments"),
+    CommentsView = Backbone.View.extend({
+        el: $('#comments'),
 
         initialize: function () {
             this.collection = new Comments(comments);
@@ -208,22 +225,25 @@ $(function () {
         }, // render..
 
         renderComment: function (item) {
-            if (item.attributes.time > 0)
+            if (item.attributes.time > 0) {
                 item.attributes.time = timeToLate(item.attributes.time);
+            }
             var commentView = new CommentView({
                 model: item
             });
-            if (item.attributes.parent != undefined) {
-                this.$('#comment_'+item.attributes.parent).after(commentView.render().el);
-            }
-            else {
+            if (item.attributes.parent !== undefined) {
+                this.$(
+                    '#comment_' +
+                        item.attributes.parent
+                ).after(commentView.render().el);
+            } else {
                 this.el.append(commentView.render().el);
             }
         } // renderComment..
 
     }); // View CommentsView..
 
-    var commentsView = new CommentsView();
+    commentsView = new CommentsView();
 
     /**
      * Преобразование markdown в html
@@ -241,20 +261,29 @@ $(function () {
      * @returns {string}
      */
     function timeToLate (time) {
-        var now = new Date();
+        var now, daystoCD, hourstoCD, minutestoCD;
+        now = new Date();
         // days
-        var daystoCD = Math.floor((now.getTime() - time) / (1000*60*60*24));
-        if (daystoCD > 0)
-            return daystoCD+" дн. назад";
+        daystoCD = Math.floor((now.getTime() - time) /
+            (1000 * 60 * 60 * 24));
+        if (daystoCD > 0) {
+            return daystoCD +
+                ' дн. назад';
+        }
         // hours
-        var hourstoCD = Math.floor((now.getTime() - time) / (1000*60*60));
-        if (hourstoCD > 0)
-            return hourstoCD+" час. назад";
+        hourstoCD = Math.floor((now.getTime() - time) /
+            (1000 * 60 * 60));
+        if (hourstoCD > 0) {
+            return hourstoCD +
+                ' час. назад';
+        }
         // minutes
-        var minutestoCD = Math.floor((now.getTime() - time) / (1000*60));
-        if (minutestoCD > 0)
-            return minutestoCD+" мин. назад";
-        return "";
+        minutestoCD = Math.floor((now.getTime() - time) /
+            (1000 * 60));
+        if (minutestoCD > 0) {
+            return minutestoCD +
+                ' мин. назад';
+        }
+        return '';
     } // timeToLate..
-
 });
