@@ -1,5 +1,5 @@
 body {
-  padding: 0px;
+  padding: 0;
 }
 .title {
   padding: 0 20px;
@@ -66,14 +66,14 @@ span.button {
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
 }
+.minus {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
 .open-comment,
 .hide-comment {
   text-decoration: underline;
   cursor: pointer;
-}
-.minus {
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
 }
 a.button {
   text-decoration: none;
@@ -112,8 +112,8 @@ a.button {
 }
 .error,
 .invalid.required {
-  border: 1px solid red;
+  border: 1px solid #ff0000;
 }
 .error-message {
-  color: red;
+  color: #ff0000;
 }

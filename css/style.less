@@ -1,14 +1,15 @@
 //@title-font: Georgia;
-@padding-left: 20px;
+@fix-padding: 20px;
 @subtext-color: #7e7e7e;
 @button-color: #eee;
+@error-color: red;
 
 body {
-  padding: 0px;
+  padding: 0;
 }
 
 .title {
-  padding: 0 @padding-left;
+  padding: 0 @fix-padding;
 }
 
 .published,
@@ -19,7 +20,7 @@ time {
 .content,
 .published,
 .comment-item {
-  padding-left: @padding-left;
+  padding-left: @fix-padding;
 }
 
 .avatar img,
@@ -33,7 +34,7 @@ time,
 .avatar img {
   width: 138px;
   height: 137px;
-  padding-right: 20px;
+  padding-right: @fix-padding;
 }
 
 .username,
@@ -65,6 +66,7 @@ time {
 .comment-item {
   padding-top: 10px;
 }
+
 .comment-item
 .comment-item {
   padding-left: 156px;
@@ -87,64 +89,63 @@ span.button {
   border-bottom-left-radius: 2px;
 }
 
+.minus {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
 .open-comment,
 .hide-comment {
   text-decoration: underline;
   cursor: pointer;
 }
 
-.minus {
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
 a.button {
   text-decoration: none;
   color: #000;
-
 }
 
 .comments-form {
   border: 1px solid #aeaeae;
   margin: 20px;
-  padding: 20px;
+  padding: @fix-padding;
   padding-bottom: 40px;
 }
 
-.form-title {
-  margin-top: -31px;
-  background: #fff;
-  width: 176px;
-  text-align: center;
-  padding-bottom: 20px;
-}
+  .form-title {
+    margin-top: -31px;
+    background: #fff;
+    width: 176px;
+    text-align: center;
+    padding-bottom: @fix-padding;
+  }
 
-.comments-form label {
-  width: 200px;
-  position: relative;
-  display: block;
-  float: left;
-}
+  .comments-form label {
+    width: 200px;
+    position: relative;
+    display: block;
+    float: left;
+  }
 
-.comments-form input {
-  width: 200px;
-}
+  .comments-form input {
+    width: 200px;
+  }
 
-.comments-form textarea {
-  width: 400px;
-}
+  .comments-form textarea {
+    width: 400px;
+  }
 
-.button_blue {
-  background: #1278a2;
-  color: #fff;
-  margin-left: 200px;
-  cursor: pointer;
-}
+  .button_blue {
+    background: #1278a2;
+    color: #fff;
+    margin-left: 200px;
+    cursor: pointer;
+  }
 
 .error,
 .invalid.required {
-  border: 1px solid red;
+  border: 1px solid @error-color;
 }
 .error-message {
-  color: red;
+  color: @error-color;
 }

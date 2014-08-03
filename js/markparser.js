@@ -1,13 +1,18 @@
 var Markdown = Markdown || {};
 
 (function () {
-    Markdown.Parser = function () {
-        this.makeHtml = function (text) {
 
+    /**
+     * Парсер markdown
+     * @constructor
+     */
+    Markdown.Parser = function () {
+
+        this.makeHtml = function (text) {
             text = DoHeaders(text);
 
             return text;
-        }
+        } // makeHtml..
 
         function DoHeaders (text) {
 
@@ -19,13 +24,13 @@ var Markdown = Markdown || {};
             text = text.replace(/^(\#{1,6})[ \t]*(.+?)[ \t]*\#*\n+/gm,
                 function (match, match1, match2) {
                     var level = match1.length;
-                    alert(match);
                     return "<h" + level + ">" + match2 + "</h" + level + ">\n";
                 }
             );
 
             return text;
-        }
-    }
+        } // DoHeaders..
+
+    } // Markdown Parser..
 
 })();
