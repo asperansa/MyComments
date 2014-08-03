@@ -142,12 +142,15 @@ $(function () {
          * Ответить на комментарий
          */
         answer: function () {
-            $(this.el).append(
-                this.templates.add(
-                    this.model.toJSON()
-                )
-            );
-            H5F.setup(document.getElementById('add-comment'));
+            $(this.el).find('.comments-form').hide();
+            if ($(this.el).find('.comments-form').length <= 0) {
+                $(this.el).append(
+                    this.templates.add(
+                        this.model.toJSON()
+                    )
+                );
+                H5F.setup(document.getElementById('add-comment'));
+            }
         }, // answer..
     
         /**
