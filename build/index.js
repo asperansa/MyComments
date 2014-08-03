@@ -163,7 +163,7 @@ $(function () {
                     parent: this.model.attributes.id,
                     name: $(this.el).find('input#name').val(),
                     text: markdown($(this.el).find('textarea').val()),
-                    time: new Date().getTime()
+                    time: timeToLate(new Date().getTime())
                 });
             } else { // сообщения об ошибках
                 $('.comments-form').addClass('invalid');
@@ -329,7 +329,7 @@ $(function () {
             return minutestoCD +
                 ' мин. назад';
         }
-        return '';
+        return 'только что';
     } // timeToLate..
     
 

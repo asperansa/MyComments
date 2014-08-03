@@ -27,5 +27,5 @@ function timeToLate (time) {
         return minutestoCD +
             ' мин. назад';
     }
-    return '';
+    return 'только что';
 } // timeToLate..

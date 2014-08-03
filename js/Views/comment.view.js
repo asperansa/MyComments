@@ -83,7 +83,7 @@ CommentView = Backbone.View.extend({
                 parent: this.model.attributes.id,
                 name: $(this.el).find('input#name').val(),
                 text: markdown($(this.el).find('textarea').val()),
-                time: new Date().getTime()
+                time: timeToLate(new Date().getTime())
             });
         } else { // сообщения об ошибках
             $('.comments-form').addClass('invalid');
