@@ -5,7 +5,6 @@ $(function () {
 
     cs.VERSION = '<%= version %>';
 
-    var comments;
     /**
      * Первоначальный набор demo комментариев
      * @type {*[]}
@@ -16,7 +15,7 @@ $(function () {
      *     score (number) - рейтинг комментария
      *     time (timestamp) -время добавления комментария
      */
-    comments = [
+    var comments = [
         {
             id: '234',
             name: 'Carabutur tristique',

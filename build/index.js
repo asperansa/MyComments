@@ -5,7 +5,6 @@ $(function () {
 
     cs.VERSION = '0.0.1';
 
-    var comments;
     /**
      * Первоначальный набор demo комментариев
      * @type {*[]}
@@ -16,7 +15,7 @@ $(function () {
      *     score (number) - рейтинг комментария
      *     time (timestamp) -время добавления комментария
      */
-    comments = [
+    var comments = [
         {
             id: '234',
             name: 'Carabutur tristique',
@@ -58,8 +57,7 @@ $(function () {
      *      задаем defaults: рейтинг и время по-умолчанию
      * @type {*|void}
      */
-    var Comment;
-    Comment = Backbone.Model.extend({
+    var Comment = Backbone.Model.extend({
         defaults: {
             score: 0,
             time: new Date().getTime() // timestamp
@@ -72,8 +70,7 @@ $(function () {
      *      задаем model: модель комментариев
      * @type {*|void}
      */
-    var Comments;
-    Comments = Backbone.Collection.extend({
+    var Comments = Backbone.Collection.extend({
         model: Comment
     }); // Collection Comments...
     
@@ -82,8 +79,7 @@ $(function () {
      * Определяем представление для комментария
      * @type {*|void}
      */
-    var CommentView;
-    CommentView = Backbone.View.extend({
+    var CommentView = Backbone.View.extend({
         tagName: 'div',
         className: 'comment-item',
     

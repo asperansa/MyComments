@@ -48,33 +48,8 @@ module.exports = function (grunt) {
             build: {
                 src: 'tmp'
             }
-        },
-        watch: {
-            scripts: {
-                files: ['js/*.js'],
-                tasks: ['definer:all']
-            }
-        },
-        definer: {
-            all: {
-                target: 'js/index.js',
-                directory: 'js/',
-                clean: {
-                    $: 'lib/jquery.js',
-                    _: 'lib/underscore.js'
-                },
-                jsdoc: {
-                    'file': 'Comment System',
-                    'copyright': '2014 Nadezhda Lazareva, asperansa@gmail.com',
-                    'license': 'Free license',
-                    'name': 'package.json'
-                }
-            }
         }
     });
-
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-definer');
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-complexity');

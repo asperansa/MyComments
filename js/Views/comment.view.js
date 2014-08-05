@@ -2,8 +2,7 @@
  * Определяем представление для комментария
  * @type {*|void}
  */
-var CommentView;
-CommentView = Backbone.View.extend({
+var CommentView = Backbone.View.extend({
     tagName: 'div',
     className: 'comment-item',
 
